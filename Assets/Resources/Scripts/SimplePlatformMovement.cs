@@ -50,9 +50,14 @@ public class SimplePlatformMovement : MonoBehaviour
             rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
 
         if (h > 0 && !facingRight)
+        {
             Flip();
+        }
         else if (h < 0 && facingRight)
+        {
+            
             Flip();
+        }
 
         if (jump)
         {
@@ -65,6 +70,7 @@ public class SimplePlatformMovement : MonoBehaviour
 
     void Flip()
     {
+        anim.SetTrigger("Turn");
         facingRight = !facingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
