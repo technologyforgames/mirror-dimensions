@@ -43,6 +43,21 @@ public class SimplePlatformMovement : MonoBehaviour
 
         anim.SetFloat("Speed", Mathf.Abs(h));
 
+        if (h > 0 && facingRight)
+        {
+            anim.SetBool("Turn", false);
+            anim.SetBool("Moving", true);
+        }
+        else if (h < 0 && !facingRight)
+        {
+            anim.SetBool("Turn", false);
+            anim.SetBool("Moving", true);
+        }
+        else
+        {
+            anim.SetBool("Moving", false);
+        }
+
         if (h * rb2d.velocity.x < maxSpeed)
             rb2d.AddForce(Vector2.right * h * moveForce);
 
@@ -55,7 +70,6 @@ public class SimplePlatformMovement : MonoBehaviour
         }
         else if (h < 0 && facingRight)
         {
-            
             Flip();
         }
 
@@ -70,7 +84,7 @@ public class SimplePlatformMovement : MonoBehaviour
 
     void Flip()
     {
-        anim.SetTrigger("Turn");
+        anim.SetBool("Turn", true);
         facingRight = !facingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
