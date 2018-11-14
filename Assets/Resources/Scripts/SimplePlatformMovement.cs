@@ -8,6 +8,7 @@ public class SimplePlatformMovement : MonoBehaviour
     public bool facingRight = true;
     [HideInInspector]
     public bool jump = false;
+
     public float moveForce = 365f;
     public float maxSpeed = 5f;
     public float jumpForce = 1000f;
@@ -31,7 +32,7 @@ public class SimplePlatformMovement : MonoBehaviour
     {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") || Input.GetKeyDown("up") && grounded)
         {
             jump = true;
         }
@@ -39,16 +40,14 @@ public class SimplePlatformMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
+        float horizontalAxis = Input.GetAxis("Horizontal");
 
-        anim.SetFloat("Speed", Mathf.Abs(h));
-
-        if (h > 0 && facingRight)
+        if (horizontalAxis > 0 && facingRight)
         {
             anim.SetBool("Turn", false);
             anim.SetBool("Moving", true);
         }
-        else if (h < 0 && !facingRight)
+        else if (horizontalAxis < 0 && !facingRight)
         {
             anim.SetBool("Turn", false);
             anim.SetBool("Moving", true);
@@ -58,24 +57,24 @@ public class SimplePlatformMovement : MonoBehaviour
             anim.SetBool("Moving", false);
         }
 
-        if (h * rb2d.velocity.x < maxSpeed)
-            rb2d.AddForce(Vector2.right * h * moveForce);
+        if (horizontalAxis * rb2d.velocity.x < maxSpeed)
+            rb2d.AddForce(Vector2.right * horizontalAxis * moveForce);
 
         if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
             rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
 
-        if (h > 0 && !facingRight)
+        if (horizontalAxis > 0 && !facingRight)
         {
             Flip();
         }
-        else if (h < 0 && facingRight)
+        else if (horizontalAxis < 0 && facingRight)
         {
             Flip();
         }
 
         if (jump)
         {
-            anim.SetTrigger("Jump");
+            //anim.SetTrigger("Jump");
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
         }
