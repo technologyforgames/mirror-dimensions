@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SimplePlatformMovement : MonoBehaviour
-{
-
-    [HideInInspector]
-    public bool facingRight = true;
-    [HideInInspector]
-    public bool jump = false;
-
-    public float moveForce = 365f;
-    public float maxSpeed = 5f;
-    public float jumpForce = 1000f;
+public class SimplePlatformMovement : MonoBehaviour {
+    public float moveSpeed;
+    public float maxSpeed;
+    public float jumpForce;
     public Transform groundCheck;
+
+
+    internal bool facingRight = true;
+    internal bool jump = false;
 
 
     private bool grounded = false;
@@ -20,73 +17,58 @@ public class SimplePlatformMovement : MonoBehaviour
     private Rigidbody2D rb2d;
 
 
-    // Use this for initialization
-    void Awake()
-    {
+    void Awake() {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+
+    void Update() {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if (Input.GetButtonDown("Jump") || Input.GetKeyDown("up") && grounded)
-        {
+        if (Input.GetButtonDown("Jump") || Input.GetKeyDown("up") && grounded) {
             jump = true;
         }
     }
 
-    void FixedUpdate()
-    {
-        float horizontalAxis = Input.GetAxis("Horizontal");
 
-        if (horizontalAxis > 0 && facingRight)
-        {
+    void FixedUpdate() {
+        float horizontalAxis = Input.GetAxis("Horizontal");
+        rb2d.velocity = new Vector2(moveSpeed * horizontalAxis, rb2d.velocity.y);
+        SetAnimations(horizontalAxis);
+    }
+
+    private void SetAnimations(float horizontalAxis) {
+        if (horizontalAxis > 0 && facingRight) {
             anim.SetBool("Turn", false);
             anim.SetBool("Moving", true);
-        }
-        else if (horizontalAxis < 0 && !facingRight)
-        {
+        } else if (horizontalAxis < 0 && !facingRight) {
             anim.SetBool("Turn", false);
             anim.SetBool("Moving", true);
-        }
-        else
-        {
+        } else {
             anim.SetBool("Moving", false);
         }
 
-        if (horizontalAxis * rb2d.velocity.x < maxSpeed)
-            rb2d.AddForce(Vector2.right * horizontalAxis * moveForce);
-
-        if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
-            rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
-
-        if (horizontalAxis > 0 && !facingRight)
-        {
-            Flip();
-        }
-        else if (horizontalAxis < 0 && facingRight)
-        {
-            Flip();
-        }
-
-        if (jump)
-        {
-            //anim.SetTrigger("Jump");
+        if (jump) {
+            anim.SetTrigger("Jump");
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
         }
+
+        if (horizontalAxis > 0 && !facingRight) {
+            Flip();
+        } else if (horizontalAxis < 0 && facingRight) {
+            Flip();
+        }
     }
 
-
-    void Flip()
-    {
-        anim.SetBool("Turn", true);
+    private void Flip() {
+        anim.SetTrigger("Turn");
         facingRight = !facingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+
 }

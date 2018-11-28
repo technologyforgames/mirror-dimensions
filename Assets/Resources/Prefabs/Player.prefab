@@ -84,10 +84,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 5
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2.5
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -147,11 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fb83cf4b86f8e498718a1812096569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 1
-  jump: 0
-  moveForce: 300
+  moveSpeed: 15
   maxSpeed: 7.5
-  jumpForce: 400
+  jumpForce: 3000
   groundCheck: {fileID: 4781813335196378}
 --- !u!212 &212891174438175000
 SpriteRenderer:
@@ -188,7 +186,7 @@ SpriteRenderer:
   m_SortingLayerID: 995092365
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6254ef9de30602540b434c77bbabb54b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81f754bafc7242845b2a5a6d8cd527c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
