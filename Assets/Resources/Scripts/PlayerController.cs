@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     
 
-    protected virtual void Awake() {
+    private void Awake() {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 
         if (jump) {
             anim.SetTrigger("Jump");
-            rb2d.AddForce(new Vector2(0f, jumpForce));
+            rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
             jump = false;
         }
 
