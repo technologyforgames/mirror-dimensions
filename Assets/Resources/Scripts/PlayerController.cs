@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-        jumpHash = Animator.StringToHash("Jump");
-        runStateHash = Animator.StringToHash("Base Layer.Run");
     }
 
     // Check if player is grounded
@@ -41,14 +39,10 @@ public class PlayerController : MonoBehaviour {
     // Set the animations for moving, jumping and turning
     private void SetAnimations(float horizontalAxis) {
         anim.SetFloat("Speed", Mathf.Abs(horizontalAxis));
-
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        
         if (Input.GetButtonDown("Jump") && grounded) {
-                anim.SetTrigger(jumpHash);
+                anim.SetTrigger("Jump");
                 rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
-            //anim.ResetTrigger(jumpHash);
-            // && stateInfo.nameHash == runStateHash
-
         }
 
         if (horizontalAxis < 0 && facingRight || horizontalAxis > 0 && !facingRight) {
