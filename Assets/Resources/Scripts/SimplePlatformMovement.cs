@@ -78,6 +78,8 @@ public class SimplePlatformMovement : MonoBehaviour
             anim.SetTrigger("Jump");
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
+        } else {
+            anim.ResetTrigger("Jump");
         }
     }
 
