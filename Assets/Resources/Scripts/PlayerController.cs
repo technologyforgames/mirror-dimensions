@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour {
     // Check if player is grounded
     private void Update() {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+        if (Input.GetButtonDown("Jump") && grounded) {
+            jump = true;
+            rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
+        }
     }
 
     // Calculate velocity for moving the player
@@ -40,17 +45,20 @@ public class PlayerController : MonoBehaviour {
     private void SetAnimations(float horizontalAxis) {
         anim.SetFloat("Speed", Mathf.Abs(horizontalAxis));
         
-        if (Input.GetButtonDown("Jump") && grounded) {
-                anim.SetTrigger("Jump");
-                rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
+        if (jump) { 
+            anim.SetTrigger("Jump");
+            jump = false;
         }
 
         if (horizontalAxis < 0 && facingRight || horizontalAxis > 0 && !facingRight) {
-            anim.SetTrigger("Turn");
-            facingRight = !facingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            if (grounded) {
+                anim.SetTrigger("Turn");
+            }
+                facingRight = !facingRight;
+                Vector3 theScale = transform.localScale;
+                theScale.x *= -1;
+                transform.localScale = theScale;
+            
         }
     }
 
