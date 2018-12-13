@@ -8,6 +8,7 @@ public class Ending : MonoBehaviour {
     private bool playerEntered = false;
     private bool mirrorPlayerEntered = false;
 
+    // Check trigger
     private void OnTriggerEnter2D(Collider2D target) {
         if (target.tag == "Player") {
             Debug.Log("Player entered");
@@ -22,7 +23,14 @@ public class Ending : MonoBehaviour {
     private void Update() {
         // When both players have triggered the exit, go to the next scene
         if (playerEntered && mirrorPlayerEntered) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            int sceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+
+            if (sceneToLoad < SceneManager.sceneCountInBuildSettings) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else {
+                Debug.LogWarning("NO NEXT SCENE DEFINED");
+            }
         }
     }
 }

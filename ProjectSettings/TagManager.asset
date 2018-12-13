@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MirrorPlayer
+  - BlueKey
+  - BlueWall
   layers:
   - Default
   - TransparentFX
