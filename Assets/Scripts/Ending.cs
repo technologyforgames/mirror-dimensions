@@ -23,14 +23,7 @@ public class Ending : MonoBehaviour {
     private void Update() {
         // When both players have triggered the exit, go to the next scene
         if (playerEntered && mirrorPlayerEntered) {
-
-            int sceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-
-            if (sceneToLoad < SceneManager.sceneCountInBuildSettings) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            } else {
-                Debug.LogWarning("NO NEXT SCENE DEFINED");
-            }
+            LevelHandler.Instance.LoadNextLevel();
         }
     }
 }
