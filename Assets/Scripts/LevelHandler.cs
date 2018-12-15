@@ -10,8 +10,12 @@ public class LevelHandler : MonoBehaviour {
 
     public static LevelHandler instance;
     public RawImage overlay;
+
     public float fadeOutTime = 0.5f;
     public float fadeInTime = 0.2f;
+
+    public MovieTexture cutscene1;
+    public MovieTexture cutscene2;
 
     public static bool Fading {
         get { return instance.isFading; }
@@ -34,12 +38,32 @@ public class LevelHandler : MonoBehaviour {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
             Destroy(gameObject);
         }
+
+        if (cutscene1 != null) {
+            cutscene1.Play();
+            Screen.fullScreen = true;
+        }
     }
 
 
     private void Start() {
         startColor = overlay.color;
         StartCoroutine(ManualFade());
+    }
+
+
+    private void Update() {
+        if (Input.GetKeyUp(KeyCode.Escape)) {
+            Screen.fullScreen = false;
+            cutscene1.Stop();
+            cutscene2.Stop();
+        }
+
+        if (cutscene1.isPlaying) {
+            Time.timeScale = 0.0f;
+        } else {
+            Time.timeScale = 1.0f;
+        }
     }
 
 
@@ -107,5 +131,11 @@ public class LevelHandler : MonoBehaviour {
         }
 
         isFading = false;
+    }
+
+    private void OnGUI() {
+        if (cutscene1 != null && cutscene1.isPlaying) {
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), cutscene1, ScaleMode.StretchToFill);
+        }
     }
 }
