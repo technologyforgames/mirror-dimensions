@@ -18,9 +18,6 @@ public class Ending : MonoBehaviour {
             Debug.Log("Mirror player entered");
             mirrorPlayerEntered = true;
         }
-    }
-
-    private void Update() {
         // When both players have triggered the exit, go to the next scene
         if (playerEntered && mirrorPlayerEntered) {
             LevelHandler.instance.LoadNextLevel();

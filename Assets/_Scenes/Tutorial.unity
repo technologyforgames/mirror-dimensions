@@ -893,6 +893,11 @@ PrefabInstance:
       propertyPath: overlay
       value: 
       objectReference: {fileID: 16838750}
+    - target: {fileID: 3195800661891741888, guid: 74c52f5cc73c8fb47820065add3a539f,
+        type: 3}
+      propertyPath: fadeTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c52f5cc73c8fb47820065add3a539f, type: 3}
 --- !u!1001 &757866799386625135
