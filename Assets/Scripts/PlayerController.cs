@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     private int jumpHash;
     private int runStateHash;
+    private float horizontalAxis;
 
 
     private void Awake() {
@@ -27,18 +28,25 @@ public class PlayerController : MonoBehaviour {
     // Check if player is grounded
     private void Update() {
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-
-        if (Input.GetButtonDown("Jump") && grounded) {
-            jump = true;
-            rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
+        if (!LevelHandler.Fading) {
+            if (Input.GetButtonDown("Jump") && grounded) {
+                jump = true;
+                rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
+            }
         }
     }
 
     // Calculate velocity for moving the player
     private void FixedUpdate() {
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        rb2d.velocity = new Vector2(moveSpreed * horizontalAxis, rb2d.velocity.y);
-        SetAnimations(horizontalAxis);
+        if (!LevelHandler.Fading) {
+            horizontalAxis = Input.GetAxis("Horizontal");
+            rb2d.velocity = new Vector2(moveSpreed * horizontalAxis, rb2d.velocity.y);
+            SetAnimations(horizontalAxis);
+        } else {
+            horizontalAxis = 0f;
+            rb2d.velocity = Vector2.zero;
+            anim.SetFloat("Speed", 0f);
+        }
     }
 
     // Set the animations for moving, jumping and turning

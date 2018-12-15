@@ -10,8 +10,8 @@ public class LevelHandler : MonoBehaviour {
 
     public static LevelHandler instance;
     public RawImage overlay;
-    public float fadeOutTime = 2f;
-    public float fadeInTime = 2f;
+    public float fadeOutTime = 0.5f;
+    public float fadeInTime = 0.2f;
 
     public static bool Fading {
         get { return instance.isFading; }
