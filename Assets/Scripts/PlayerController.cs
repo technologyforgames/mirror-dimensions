@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-    public float moveSpeed;
+    public float moveSpreed;
     public float maxSpeed;
     public float jumpForce;
     public Transform groundCheck;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
     // Calculate velocity for moving the player
     private void FixedUpdate() {
         float horizontalAxis = Input.GetAxis("Horizontal");
-        rb2d.velocity = new Vector2(moveSpeed * horizontalAxis, rb2d.velocity.y);
+        rb2d.velocity = new Vector2(moveSpreed * horizontalAxis, rb2d.velocity.y);
         SetAnimations(horizontalAxis);
     }
 

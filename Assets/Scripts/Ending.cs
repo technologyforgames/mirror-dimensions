@@ -23,7 +23,7 @@ public class Ending : MonoBehaviour {
     private void Update() {
         // When both players have triggered the exit, go to the next scene
         if (playerEntered && mirrorPlayerEntered) {
-            LevelHandler.Instance.LoadNextLevel();
+            LevelHandler.instance.LoadNextLevel();
         }
     }
 }
