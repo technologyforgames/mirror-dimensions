@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelHandler : MonoBehaviour {
-
-
+    
     public static LevelHandler instance;
     public RawImage overlay;
 
@@ -22,9 +21,11 @@ public class LevelHandler : MonoBehaviour {
     }
 
     private Color startColor;
+    private AudioSource audioSource;
     private float fadeProgress;
     private bool isFading;
     private int levelIndex;
+    private bool inCountDown;
 
 
     private void Awake() {
@@ -39,32 +40,24 @@ public class LevelHandler : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (cutscene1 != null) {
-            cutscene1.Play();
-            Screen.fullScreen = true;
-        }
+        audioSource = GetComponent<AudioSource>();
+        PlayThenDoSomething(cutscene1, FadeAndContinue);
     }
 
 
     private void Start() {
         startColor = overlay.color;
-        StartCoroutine(ManualFade());
     }
 
 
     private void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
-            Screen.fullScreen = false;
-            cutscene1.Stop();
-            cutscene2.Stop();
-        }
-
-        if (cutscene1.isPlaying) {
-            Time.timeScale = 0.0f;
-        } else {
-            Time.timeScale = 1.0f;
+            StopCutscene();
         }
     }
+
+
+    /***** LOAD SCENES *****/
 
 
     public void LoadNextLevel() {
@@ -89,6 +82,9 @@ public class LevelHandler : MonoBehaviour {
     }
 
 
+    /***** FADE IN / OUT *****/
+
+
     private void StartFade() {
         isFading = true;
         StartCoroutine(Fade());
@@ -98,7 +94,7 @@ public class LevelHandler : MonoBehaviour {
     private IEnumerator ManualFade() {
         Color fromColor = startColor;
         Color toColor = Color.clear;
-        float fadeRate = 1f / 2f;
+        float fadeRate = 1f / 1f;
         fadeProgress = 0f;
 
         while (fadeProgress < 1f) {
@@ -133,9 +129,54 @@ public class LevelHandler : MonoBehaviour {
         isFading = false;
     }
 
+
+    /***** CUTSCENES *****/
+
+
+    public void PlayThenDoSomething(MovieTexture movieTexture, Action callback) {
+        if (movieTexture != null) {
+            movieTexture.Stop();
+            movieTexture.Play();
+            audioSource.clip = movieTexture.audioClip;
+            audioSource.Play();
+            Screen.fullScreen = true;
+            Time.timeScale = 0f;
+
+            StartCoroutine(FindEnd(movieTexture, callback));
+        }
+    }
+
+
+    private void StopCutscene() {
+        Screen.fullScreen = false;
+        cutscene1.Stop();
+        cutscene2.Stop();
+        audioSource.Stop();
+        FadeAndContinue();
+    }
+
+
+    private void FadeAndContinue() {
+        StartCoroutine(ManualFade());
+        Time.timeScale = 1.0f;
+    }
+
+    
+    private IEnumerator FindEnd(MovieTexture movieTexture, Action callback) {
+        while (movieTexture.isPlaying) {
+            yield return 0;
+        }
+
+        callback();
+        yield break;
+    }
+
+
     private void OnGUI() {
         if (cutscene1 != null && cutscene1.isPlaying) {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), cutscene1, ScaleMode.StretchToFill);
         }
     }
+
+
 }
