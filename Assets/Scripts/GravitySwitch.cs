@@ -8,7 +8,8 @@ public class GravitySwitch : MonoBehaviour
     public Sprite normalSprite;
     public Sprite flippedSprite;
 
-    private bool isFlipped = false;
+    internal bool isFlipped = false;
+
     private SpriteRenderer spriteRenderer;
 
     private void Start() {
@@ -25,8 +26,6 @@ public class GravitySwitch : MonoBehaviour
 
     public void ToggleSwitch() {
         isFlipped = !isFlipped;
-
-        Debug.Log("ToggleGravitySwitch");
 
         if (isFlipped) {
             spriteRenderer.sprite = flippedSprite;

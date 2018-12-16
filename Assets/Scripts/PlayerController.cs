@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     private Animator anim;
     private GravitySwitch gravitySwitch;
+    private GameObject gravityGameObject;
 
     private int jumpHash;
     private int runStateHash;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Start() {
-        GameObject gravityGameObject = GameObject.FindWithTag("GravitySwitch");
+        gravityGameObject = GameObject.FindWithTag("GravitySwitch");
         if (gravityGameObject != null) {
             gravitySwitch = gravityGameObject.GetComponent<GravitySwitch>();
         }
@@ -44,8 +45,16 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetButtonDown("Fire1") && isNearSwitch) {
                 gravitySwitch.ToggleSwitch();
+                FlipGravity();
             }
         }
+    }
+
+    public void FlipGravity() {
+        // Reverse gravity
+        transform.Rotate(new Vector3(180f, 0f, 0f));
+        rb2d.gravityScale *= -1;
+        jumpForce *= -1;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
