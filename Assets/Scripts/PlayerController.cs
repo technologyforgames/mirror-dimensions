@@ -51,10 +51,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void FlipGravity() {
+        MainPlayer player = GameObject.FindWithTag("Player").GetComponent<MainPlayer>();
+        MirrorPlayer mirrorPlayer = GameObject.FindWithTag("MirrorPlayer").GetComponent<MirrorPlayer>();
+
         // Reverse gravity
-        transform.Rotate(new Vector3(180f, 0f, 0f));
-        rb2d.gravityScale *= -1;
-        jumpForce *= -1;
+        player.transform.Rotate(new Vector3(180f, 0f, 0f));
+        player.rb2d.gravityScale *= -1;
+        player.jumpForce *= -1;
+
+        mirrorPlayer.transform.Rotate(new Vector3(180f, 0f, 0f));
+        mirrorPlayer.rb2d.gravityScale *= -1;
+        mirrorPlayer.jumpForce *= -1;
     }
 
     void OnTriggerEnter2D(Collider2D other) {

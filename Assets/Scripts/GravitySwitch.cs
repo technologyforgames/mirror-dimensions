@@ -16,14 +16,6 @@ public class GravitySwitch : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update() {
-        if (isFlipped) {
-            spriteRenderer.sprite = flippedSprite;
-        } else {
-            spriteRenderer.sprite = normalSprite;
-        }
-    }
-
     public void ToggleSwitch() {
         isFlipped = !isFlipped;
 
