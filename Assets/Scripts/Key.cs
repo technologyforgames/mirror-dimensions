@@ -10,12 +10,15 @@ public class Key : MonoBehaviour
 
         if (this.gameObject.tag == "BlueKey") {
             Fade(GameObject.FindWithTag("BlueWall"));
+            GameObject.FindWithTag("BlueWall").GetComponent<AudioSource>().Play();
         }
         if (this.gameObject.tag == "YellowKey") {
             Fade(GameObject.FindWithTag("YellowWall"));
+            GameObject.FindWithTag("YellowWall").GetComponent<AudioSource>().Play();
         }
         if (this.gameObject.tag == "RedKey") {
             Fade(GameObject.FindWithTag("RedWall"));
+            GameObject.FindWithTag("RedWall").GetComponent<AudioSource>().Play();
         }
     }
 
