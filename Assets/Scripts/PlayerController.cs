@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
     private GravitySwitch gravitySwitch;
     private GameObject gravityGameObject;
+    private CameraScript camScript;
 
     private int jumpHash;
     private int runStateHash;
@@ -29,6 +30,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Start() {
+        camScript = FindObjectOfType<CameraScript>();
+        camScript.Target = GameObject.FindWithTag("Player").transform;
+
         gravityGameObject = GameObject.FindWithTag("GravitySwitch");
         if (gravityGameObject != null) {
             gravitySwitch = gravityGameObject.GetComponent<GravitySwitch>();
