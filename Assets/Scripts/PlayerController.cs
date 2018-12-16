@@ -1,28 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour {
     public float moveSpreed;
     public float maxSpeed;
     public float jumpForce;
     public Transform groundCheck;
-
-
-    internal bool facingRight = true;
-    internal bool jump = false;
+    
     internal Rigidbody2D rb2d;
 
-
+    private bool facingRight = true;
+    private bool jump = false;
     private bool grounded = false;
+
     private Animator anim;
+    private GravitySwitch gravitySwitch;
+
     private int jumpHash;
     private int runStateHash;
     private float horizontalAxis;
-
+    private bool isNearSwitch;
 
     private void Awake() {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        GameObject gravityGameObject = GameObject.FindWithTag("GravitySwitch");
+        if (gravityGameObject != null) {
+            gravitySwitch = gravityGameObject.GetComponent<GravitySwitch>();
+        }
     }
 
     // Check if player is grounded
@@ -33,6 +42,21 @@ public class PlayerController : MonoBehaviour {
                 jump = true;
                 rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
             }
+            if (Input.GetButtonDown("Fire1") && isNearSwitch) {
+                gravitySwitch.ToggleSwitch();
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "GravitySwitch") {
+            isNearSwitch = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.tag == "GravitySwitch") {
+            isNearSwitch = false;
         }
     }
 
