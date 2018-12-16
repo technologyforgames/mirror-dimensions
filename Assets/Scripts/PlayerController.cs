@@ -48,7 +48,11 @@ public class PlayerController : MonoBehaviour {
                 rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
             }
             if (Input.GetButtonDown("Fire1") && isNearSwitch) {
-                gravitySwitch.ToggleSwitch();
+                GameObject[] objs;
+                objs = GameObject.FindGameObjectsWithTag("GravitySwitch");
+                foreach (GameObject gravitySwitch in objs) {
+                    gravitySwitch.GetComponent<GravitySwitch>().ToggleSwitch();
+                }
                 FlipGravity();
             }
         }
