@@ -216,8 +216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -196}
-  m_SizeDelta: {x: 250, y: 75}
+  m_AnchoredPosition: {x: 0, y: -210}
+  m_SizeDelta: {x: 150, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359743011
 MonoBehaviour:
@@ -292,7 +292,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a4a19b6fff4caca4aa7b87743a965e00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca9e1b02b5e6c194083a7bd8b4d8ba86, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -418,6 +418,115 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &742120630
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114207610709107175, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_Name
+      value: CFX3_Flying_Ember_Upward
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795345189731601291, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984029927068681613, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1198.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984029927068681613, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 671.8821
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984029927068681613, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984029927068681613, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984029927068681613, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984029927068681613, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435602806103271608, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 995092365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435602806103271608, guid: ce55906a221daa746a2c738dbeaaa8a0,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce55906a221daa746a2c738dbeaaa8a0, type: 3}
 --- !u!1 &967814389
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +594,8 @@ Canvas:
   m_GameObject: {fileID: 967814389}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1895622687}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -495,7 +604,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &967814393
 RectTransform:
@@ -569,7 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0.8862746, a: 1}
+  m_Color: {r: 0.93725497, g: 0.8745099, b: 0.7254902, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -634,8 +743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 131.37}
-  m_SizeDelta: {x: 0, y: 262.74}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091269564
 MonoBehaviour:
@@ -657,7 +766,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1ca4165241938184c89415ac180f98a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2fbab53d5e12c24099811becc9fe21d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -932,7 +1041,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 330
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

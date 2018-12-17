@@ -8,6 +8,8 @@ TagManager:
   - BlueKey
   - BlueWall
   - GravitySwitch
+  - FxTemporaire
+  - FadingOverlay
   layers:
   - Default
   - TransparentFX

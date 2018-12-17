@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed;
     public float jumpForce;
     public Transform groundCheck;
-    
+
     internal Rigidbody2D rb2d;
 
     private bool facingRight = true;
@@ -39,14 +39,17 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Check if player is grounded
     private void Update() {
+
+        // Check if player is grounded
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         if (!LevelHandler.Fading) {
+            // Check if player is jumping
             if (Input.GetButtonDown("Jump") && grounded) {
                 jump = true;
                 rb2d.AddForce(new Vector2(rb2d.gravityScale, jumpForce));
             }
+            // Check if player pressed E for activating switch
             if (Input.GetButtonDown("Fire1") && isNearSwitch) {
                 GameObject[] objs;
                 objs = GameObject.FindGameObjectsWithTag("GravitySwitch");
@@ -55,8 +58,20 @@ public class PlayerController : MonoBehaviour {
                 }
                 FlipGravity();
             }
+
+            // Calculate velocity for movement
+            horizontalAxis = Input.GetAxis("Horizontal");
+            rb2d.velocity = new Vector2(moveSpreed * horizontalAxis, rb2d.velocity.y);
+            SetAnimations(horizontalAxis);
+        } 
+        // When in load / fade freeze and reset movement of the player
+        else {
+            horizontalAxis = 0f;
+            rb2d.velocity = Vector2.zero;
+            anim.SetFloat("Speed", 0f);
         }
     }
+
 
     public void FlipGravity() {
         MainPlayer player = GameObject.FindWithTag("Player").GetComponent<MainPlayer>();
@@ -84,24 +99,11 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Calculate velocity for moving the player
-    private void FixedUpdate() {
-        if (!LevelHandler.Fading) {
-            horizontalAxis = Input.GetAxis("Horizontal");
-            rb2d.velocity = new Vector2(moveSpreed * horizontalAxis, rb2d.velocity.y);
-            SetAnimations(horizontalAxis);
-        } else {
-            horizontalAxis = 0f;
-            rb2d.velocity = Vector2.zero;
-            anim.SetFloat("Speed", 0f);
-        }
-    }
-
     // Set the animations for moving, jumping and turning
     private void SetAnimations(float horizontalAxis) {
         anim.SetFloat("Speed", Mathf.Abs(horizontalAxis));
-        
-        if (jump) { 
+
+        if (jump) {
             anim.SetTrigger("Jump");
             jump = false;
         }
@@ -110,11 +112,11 @@ public class PlayerController : MonoBehaviour {
             if (grounded) {
                 anim.SetTrigger("Turn");
             }
-                facingRight = !facingRight;
-                Vector3 theScale = transform.localScale;
-                theScale.x *= -1;
-                transform.localScale = theScale;
-            
+            facingRight = !facingRight;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+
         }
     }
 

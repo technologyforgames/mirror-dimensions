@@ -727,6 +727,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2136828178777760376, guid: 1a13c2c43d0818b49ad7fe899e9bc6fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: FadingOverlay
+      objectReference: {fileID: 0}
     - target: {fileID: 2136828178777760375, guid: 1a13c2c43d0818b49ad7fe899e9bc6fd,
         type: 3}
       propertyPath: m_LocalPosition.x

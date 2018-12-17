@@ -27,6 +27,8 @@ public class LevelHandler : MonoBehaviour {
     private bool isFading;
     private int levelIndex;
     private bool inCountDown;
+    private bool hasRestarted;
+    private GameObject overlayObject;
 
     private void Awake() {
         //Check if instance already exists
@@ -47,12 +49,24 @@ public class LevelHandler : MonoBehaviour {
 
     private void Start() {
         startColor = overlay.color;
+        overlayObject = GameObject.FindGameObjectWithTag("FadingOverlay");
     }
 
 
     private void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
             StopCutscene();
+        }
+        if (hasRestarted) {
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name == "StartScreen") {
+                // Destroy objects who won't destroy on load
+                Destroy(overlayObject);
+                Destroy(this.gameObject);
+            }
+            if (currentScene.name == "Intro") {
+                audioSource.Play();
+            }
         }
     }
 
@@ -75,11 +89,14 @@ public class LevelHandler : MonoBehaviour {
 
     public void LoadEnding() {
         isFading = true;
-        StartCoroutine(ManualFade());
+        overlay.color = startColor;
         PlayThenDoSomething(cutscene2, GoBackToMenu);
     }
 
     private void GoBackToMenu() {
+        audioSource.Stop();
+        Time.timeScale = 1.0f;
+        hasRestarted = true;
         SceneManager.LoadScene("StartScreen");
     }
 
@@ -99,9 +116,7 @@ public class LevelHandler : MonoBehaviour {
     }
 
 
-    private IEnumerator ManualFade() {
-        Color fromColor = startColor;
-        Color toColor = Color.clear;
+    private IEnumerator ManualFade(Color fromColor, Color toColor) {
         float fadeRate = 1f / 1f;
         fadeProgress = 0f;
 
@@ -112,7 +127,6 @@ public class LevelHandler : MonoBehaviour {
 
             yield return null;
         }
-        isFading = false;
         overlay.color = toColor;
     }
 
@@ -157,17 +171,23 @@ public class LevelHandler : MonoBehaviour {
 
     private void StopCutscene() {
         Screen.fullScreen = false;
-        cutscene1.Stop();
-        cutscene2.Stop();
         audioSource.Stop();
-        FadeAndContinue();
+
+        if (cutscene1 != null && cutscene1.isPlaying) {
+            cutscene1.Stop();
+            FadeAndContinue();
+        }
+        if (cutscene2 != null && cutscene2.isPlaying) {
+            cutscene2.Stop();
+            GoBackToMenu();
+        }
     }
 
 
     private void FadeAndContinue() {
         audioSource.clip = backgroundMusic;
         audioSource.Play();
-        StartCoroutine(ManualFade());
+        StartCoroutine(ManualFade(startColor, Color.clear));
         Time.timeScale = 1.0f;
     }
 
@@ -185,6 +205,10 @@ public class LevelHandler : MonoBehaviour {
     private void OnGUI() {
         if (cutscene1 != null && cutscene1.isPlaying) {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), cutscene1, ScaleMode.StretchToFill);
+        }
+
+        if (cutscene2 != null && cutscene2.isPlaying) {
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), cutscene2, ScaleMode.StretchToFill);
         }
     }
 
