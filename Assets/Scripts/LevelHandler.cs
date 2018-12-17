@@ -15,6 +15,7 @@ public class LevelHandler : MonoBehaviour {
 
     public MovieTexture cutscene1;
     public MovieTexture cutscene2;
+    public AudioClip backgroundMusic;
 
     public static bool Fading {
         get { return instance.isFading; }
@@ -26,7 +27,6 @@ public class LevelHandler : MonoBehaviour {
     private bool isFading;
     private int levelIndex;
     private bool inCountDown;
-
 
     private void Awake() {
         //Check if instance already exists
@@ -62,12 +62,10 @@ public class LevelHandler : MonoBehaviour {
 
     public void LoadNextLevel() {
         int sceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-       // StartCoroutine(ManualFade(Color.clear, startcolor));
 
         if (sceneToLoad < SceneManager.sceneCountInBuildSettings) {
             {
                 LoadLevel(sceneToLoad);
-                //SceneManager.LoadScene(sceneToLoad);
             }
         } else {
             Debug.LogWarning("NO NEXT SCENE DEFINED");
@@ -157,6 +155,8 @@ public class LevelHandler : MonoBehaviour {
 
 
     private void FadeAndContinue() {
+        audioSource.clip = backgroundMusic;
+        audioSource.Play();
         StartCoroutine(ManualFade());
         Time.timeScale = 1.0f;
     }

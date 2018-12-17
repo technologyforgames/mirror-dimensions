@@ -50,6 +50,7 @@ MonoBehaviour:
   fadeInTime: 0.2
   cutscene1: {fileID: 15200000, guid: 31e0923824a02874292581250a5886d1, type: 3}
   cutscene2: {fileID: 15200000, guid: 2d282b498af5f5442bcb053145918adb, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 118c2c7cf8c9177428a7bd1bdd3d5173, type: 3}
 --- !u!114 &8638702981831047504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,9 +75,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

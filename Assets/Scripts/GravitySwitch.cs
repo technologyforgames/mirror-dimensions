@@ -11,13 +11,17 @@ public class GravitySwitch : MonoBehaviour
     internal bool isFlipped = false;
 
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     private void Start() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void ToggleSwitch() {
         isFlipped = !isFlipped;
+
+        audioSource.Play();
 
         if (isFlipped) {
             spriteRenderer.sprite = flippedSprite;
