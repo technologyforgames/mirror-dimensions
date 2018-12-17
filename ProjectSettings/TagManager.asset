@@ -10,6 +10,10 @@ TagManager:
   - GravitySwitch
   - FxTemporaire
   - FadingOverlay
+  - RedWall
+  - RedKey
+  - YellowWall
+  - YellowKey
   layers:
   - Default
   - TransparentFX
