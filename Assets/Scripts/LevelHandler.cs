@@ -73,6 +73,16 @@ public class LevelHandler : MonoBehaviour {
     }
 
 
+    public void LoadEnding() {
+        isFading = true;
+        StartCoroutine(ManualFade());
+        PlayThenDoSomething(cutscene2, GoBackToMenu);
+    }
+
+    private void GoBackToMenu() {
+        SceneManager.LoadScene("StartScreen");
+    }
+
     private static void LoadLevel(int aLevelIndex) {
         if (Fading) return;
         instance.levelIndex = aLevelIndex;
@@ -102,7 +112,7 @@ public class LevelHandler : MonoBehaviour {
 
             yield return null;
         }
-
+        isFading = false;
         overlay.color = toColor;
     }
 
