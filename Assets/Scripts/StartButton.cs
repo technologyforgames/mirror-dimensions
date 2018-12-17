@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour {
 
+    public AudioSource backgroundMusic;
+
     private AudioSource audioSource;
 
     private void Start() {
@@ -14,6 +16,7 @@ public class StartButton : MonoBehaviour {
 
     public void LoadIntro() {
         audioSource.Play();
+        backgroundMusic.Stop();
         SceneManager.LoadScene("Intro");
     }
 
