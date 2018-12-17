@@ -656,7 +656,7 @@ PrefabInstance:
     - target: {fileID: 757866798973661978, guid: fe45334765ad5104b8087414a3701ffb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -2.91
       objectReference: {fileID: 0}
     - target: {fileID: 757866798973661978, guid: fe45334765ad5104b8087414a3701ffb,
         type: 3}
@@ -703,11 +703,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 757866798973661977, guid: fe45334765ad5104b8087414a3701ffb,
-        type: 3}
-      propertyPath: levelHandler
-      value: 
-      objectReference: {fileID: 3195800661891741888}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe45334765ad5104b8087414a3701ffb, type: 3}
 --- !u!1001 &2136828179855742159
@@ -721,6 +716,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FadingOverlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136828178777760376, guid: 1a13c2c43d0818b49ad7fe899e9bc6fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2136828178777760375, guid: 1a13c2c43d0818b49ad7fe899e9bc6fd,
         type: 3}
@@ -779,18 +779,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a13c2c43d0818b49ad7fe899e9bc6fd, type: 3}
---- !u!114 &3195800661891741888 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3195800661891741888, guid: 74c52f5cc73c8fb47820065add3a539f,
-    type: 3}
-  m_PrefabInstance: {fileID: 452594588266593061}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d3168d6076d1f418465fa78dca6a29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3629664323270455650
 PrefabInstance:
   m_ObjectHideFlags: 0
