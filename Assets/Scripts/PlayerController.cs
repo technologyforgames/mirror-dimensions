@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour {
     private bool grounded = false;
 
     private Animator anim;
-    private GravitySwitch gravitySwitch;
-    private GameObject gravityGameObject;
-    private CameraScript camScript;
 
     private int jumpHash;
     private int runStateHash;
@@ -27,16 +24,6 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start() {
-        camScript = FindObjectOfType<CameraScript>();
-        camScript.Target = GameObject.FindWithTag("Player").transform;
-
-        gravityGameObject = GameObject.FindWithTag("GravitySwitch");
-        if (gravityGameObject != null) {
-            gravitySwitch = gravityGameObject.GetComponent<GravitySwitch>();
-        }
     }
 
     private void Update() {

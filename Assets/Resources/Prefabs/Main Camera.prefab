@@ -96,4 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DampTime: 0.15
-  Target: {fileID: 0}
+  Target1: {fileID: 0}
+  Target2: {fileID: 0}
