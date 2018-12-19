@@ -57,7 +57,7 @@ public class LevelHandler : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Escape)) {
             StopCutscene();
         }
-        if (Input.GetKeyUp(KeyCode.R)) {
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
             Scene currentScene = SceneManager.GetActiveScene();
 
             if (currentScene.name == "Intro") {

@@ -1366,8 +1366,8 @@ PrefabInstance:
     - target: {fileID: 5220566910275653027, guid: ac6b638748885334cb5f0ea1bc3d598b,
         type: 3}
       propertyPath: m_text
-      value: "If you lose sight of your mirror-self or get stuck one way or the other,
-        \ntry pressing [R] to try from the beginning."
+      value: If you lose sight of your mirror-self or get stuck one way or the other,
+        try pressing [SHIFT] + [R] to try from the beginning.
       objectReference: {fileID: 0}
     - target: {fileID: 5220566910275653027, guid: ac6b638748885334cb5f0ea1bc3d598b,
         type: 3}
@@ -1382,17 +1382,17 @@ PrefabInstance:
     - target: {fileID: 5220566910275653027, guid: ac6b638748885334cb5f0ea1bc3d598b,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 117
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 5220566910275653027, guid: ac6b638748885334cb5f0ea1bc3d598b,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 5220566910275653027, guid: ac6b638748885334cb5f0ea1bc3d598b,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 5220566910275653027, guid: ac6b638748885334cb5f0ea1bc3d598b,
         type: 3}
