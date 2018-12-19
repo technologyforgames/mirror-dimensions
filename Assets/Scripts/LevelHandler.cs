@@ -59,7 +59,7 @@ public class LevelHandler : MonoBehaviour {
         }
         if (hasRestarted) {
             Scene currentScene = SceneManager.GetActiveScene();
-            if (currentScene.name == "StartScreen") {
+            if (currentScene.name == "Credits") {
                 // Destroy objects who won't destroy on load
                 Destroy(overlayObject);
                 Destroy(this.gameObject);
@@ -90,14 +90,14 @@ public class LevelHandler : MonoBehaviour {
     public void LoadEnding() {
         isFading = true;
         overlay.color = startColor;
-        PlayThenDoSomething(cutscene2, GoBackToMenu);
+        PlayThenDoSomething(cutscene2, GoToCreditsScene);
     }
 
-    private void GoBackToMenu() {
+    private void GoToCreditsScene() {
         audioSource.Stop();
         Time.timeScale = 1.0f;
         hasRestarted = true;
-        SceneManager.LoadScene("StartScreen");
+        SceneManager.LoadScene("Credits");
     }
 
     private static void LoadLevel(int aLevelIndex) {
@@ -179,7 +179,7 @@ public class LevelHandler : MonoBehaviour {
         }
         if (cutscene2 != null && cutscene2.isPlaying) {
             cutscene2.Stop();
-            GoBackToMenu();
+            GoToCreditsScene();
         }
     }
 
