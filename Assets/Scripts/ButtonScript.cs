@@ -28,6 +28,11 @@ public class ButtonScript : MonoBehaviour {
     }
 
 
+    public void doExitGame() {
+        Application.Quit();
+    }
+
+
     private void Update() {
         if (Input.GetKeyUp(KeyCode.Escape)) {
             Scene currentScene = SceneManager.GetActiveScene();
