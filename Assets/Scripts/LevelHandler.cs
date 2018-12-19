@@ -57,6 +57,16 @@ public class LevelHandler : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Escape)) {
             StopCutscene();
         }
+        if (Input.GetKeyUp(KeyCode.R)) {
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            if (currentScene.name == "Intro") {
+                Debug.LogError("Cannot reload this scene");
+            } else {
+                int sceneToReload = currentScene.buildIndex;
+                LoadLevel(sceneToReload);
+            }
+        }
         if (hasRestarted) {
             Scene currentScene = SceneManager.GetActiveScene();
             if (currentScene.name == "Credits") {
